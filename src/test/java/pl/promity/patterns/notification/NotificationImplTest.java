@@ -1,4 +1,4 @@
-package pl.promity.examples.notification;
+package pl.promity.patterns.notification;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,11 +9,11 @@ public class NotificationImplTest {
 
     private static final String DELIMITER = ".";
 
-    private NotificationImpl objectUnderTest;
+    private Notification objectUnderTest;
 
     @Before
     public void setUp() throws Exception {
-        objectUnderTest = new NotificationImpl(DELIMITER);
+        objectUnderTest = new Notification(DELIMITER);
     }
 
     @Test
@@ -37,36 +37,6 @@ public class NotificationImplTest {
 
         //then
         assertThat(hasErrors).isFalse();
-    }
-
-    @Test
-    public void testThrowingNPEWhenAddingNullError() throws Exception {
-        //given
-        String message = null;
-
-        //when
-        try {
-            objectUnderTest.addError(message);
-            fail("NullPointerException not thrown");
-        }catch (NullPointerException exception){
-            //then
-            assertThat(exception).isNotNull();
-        }
-    }
-
-    @Test
-    public void testThrowingIAEWhenAddingNullError() throws Exception {
-        //given
-        String message = "";
-
-        //when
-        try {
-            objectUnderTest.addError(message);
-            fail("IllegalArgumentException not thrown");
-        }catch (IllegalArgumentException exception){
-            //then
-            assertThat(exception).isNotNull();
-        }
     }
 
     @Test
