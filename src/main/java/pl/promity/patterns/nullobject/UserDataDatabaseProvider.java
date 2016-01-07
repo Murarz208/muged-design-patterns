@@ -15,9 +15,9 @@ public class UserDataDatabaseProvider implements UserDataProvider {
     /** this method is implemented for simulating d*a*t*a*b*a*s*e magic */
     private List<UserData> getDatabaseUserData(){
         return Lists.newArrayList(
-            new UserData("mike.tyson", "Mike Tyson", "7988 Deerfield Drive, Naples, FL 34116"),
-            new UserData("steve.jobs", "Steve Jobs", "666 Drive, Hell"),
-            new UserData("walt.disney", "Walter Disney", "Fridge")
+            new UserData(45, "mike.tyson", "Mike Tyson", "7988 Deerfield Drive, Naples, FL 34116"),
+            new UserData(55, "steve.jobs", "Steve Jobs", "666 Drive, Hell"),
+            new UserData(95, "walt.disney", "Walter Disney", "Fridge")
         );
     }
 

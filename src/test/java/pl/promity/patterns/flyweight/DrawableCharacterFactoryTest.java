@@ -45,4 +45,5 @@ public class DrawableCharacterFactoryTest {
         //then
         assertThat(drawableCharacter).isNotNull().isEqualTo(expectedDrawableCharacter);
     }
+
 }

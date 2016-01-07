@@ -19,7 +19,7 @@ public class NotificationImplTest {
     @Test
     public void testHasErrorFlagWhenErrorsArePresent() throws Exception {
         //given
-        objectUnderTest.addError("newError");
+        objectUnderTest.addError("newError", null);
 
         //when
         boolean hasErrors = objectUnderTest.hasErrors();
@@ -43,7 +43,7 @@ public class NotificationImplTest {
     public void testAddingSingleErrorMessage() throws Exception {
         //given
         String message = "message";
-        objectUnderTest.addError(message);
+        objectUnderTest.addError(message, null);
 
         //when
         String resultMessage = objectUnderTest.errorMessage();
@@ -57,9 +57,9 @@ public class NotificationImplTest {
         //given
         String messageOne = "messageOne";
         String messageTwo = "messageTwo";
-        objectUnderTest.addError(messageOne);
-        objectUnderTest.addError(messageTwo);
-        objectUnderTest.addError(messageTwo);
+        objectUnderTest.addError(messageOne, null);
+        objectUnderTest.addError(messageTwo, null);
+        objectUnderTest.addError(messageTwo, null);
         String expectedMessage = messageOne + DELIMITER + messageTwo + DELIMITER + messageTwo;
 
         //when

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Notification {
 
     private final String delimiter;
-    private final List<String> errors;
+    private final List<Error> errors;
 
     public Notification(String delimiter) {
         this.delimiter = delimiter;
@@ -32,7 +32,18 @@ public class Notification {
      * Delimiter is specified by implemented class.
      */
     public String errorMessage() {
-        return errors.stream().collect(Collectors.joining(delimiter));
+        return errors.stream().map(error -> error.message ).collect(Collectors.joining(delimiter));
+    }
+
+    /**
+     * Adds new error message to inner storage. Exception parameter can be ignored (can be null)
+     * @throws NullPointerException when error message is null
+     * @throws IllegalArgumentException when error message is empty
+     */
+    public void addError(String errorMessage, Exception exception) {
+        Preconditions.checkNotNull(errorMessage, "passed null error message to notification");
+        Preconditions.checkArgument(!errorMessage.isEmpty(), "passed empty error message to notification");
+        errors.add( new Error(errorMessage, exception) );
     }
 
     /**
@@ -41,9 +52,17 @@ public class Notification {
      * @throws IllegalArgumentException when error message is empty
      */
     public void addError(String errorMessage) {
-        Preconditions.checkNotNull(errorMessage, "passed null error message to notification");
-        Preconditions.checkArgument(!errorMessage.isEmpty(), "passed empty error message to notification");
-        errors.add(errorMessage);
+        addError(errorMessage, null);
+    }
+
+    private final class Error{
+        /** private */ final String message;
+        /** private */ final Exception exception;
+
+        private Error(String message, Exception exception) {
+            this.message = message;
+            this.exception = exception;
+        }
     }
 
 }

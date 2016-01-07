@@ -1,21 +1,22 @@
 package pl.promity.patterns.filter;
 
-import com.google.common.base.Predicate;
 import pl.promity.patterns.common.UserData;
+
+import java.util.function.Predicate;
 
 /**
  * Predicate example with guava
  */
-public class GuavaPredicate implements Predicate<UserData>{
+public class StartsWithJava8Predicate implements Predicate<UserData> {
 
     private final String startsWithString;
 
-    public GuavaPredicate(String startsWithString) {
+    public StartsWithJava8Predicate(String startsWithString) {
         this.startsWithString = startsWithString;
     }
 
     @Override
-    public boolean apply(UserData userData) {
+    public boolean test(UserData userData) {
         return userData.getLogin().startsWith( this.startsWithString );
     }
 }
